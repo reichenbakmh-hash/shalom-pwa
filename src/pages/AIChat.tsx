@@ -6,7 +6,7 @@ import type { AIMessage } from '../types'
 
 // Remplacez par l'URL de votre Worker une fois déployé
 // (idéalement via une variable d'environnement Vite : import.meta.env.VITE_API_URL)
-const API_URL = 'https://shalom-api.VOTRE-SOUS-DOMAINE.workers.dev'
+const API_URL = 'https://shalom-api.reichenbakmh.workers.dev/'
 
 const modes: { id: AIMessage['mode']; label: string; icon: typeof BookOpen; hint: string }[] = [
   { id: 'comprendre', label: 'Comprendre', icon: BookOpen, hint: 'Expliquer un passage biblique' },
@@ -87,9 +87,7 @@ export default function AIChat() {
       subtitle="Une assistante d'étude et de réflexion chrétienne — jamais une autorité spirituelle."
     >
       <div className="liquid-glass-panel rounded-xl p-3 mb-4 text-white/50 text-xs leading-relaxed">
-        Shalom AI aide à comprendre, méditer, prier, explorer et étudier la Parole. Elle ne remplace ni le
-        discernement personnel, ni la prière, ni l'accompagnement d'une communauté de foi, et ne présente
-        jamais ses réponses comme une parole divine.
+        Shalom AI aide à comprendre, méditer, prier, explorer et étudier la Parole.
       </div>
 
       <div className="flex gap-1.5 overflow-x-auto pb-2 mb-4">
