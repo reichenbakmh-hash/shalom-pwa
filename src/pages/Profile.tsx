@@ -54,7 +54,7 @@ export default function Profile() {
   ]
 
   return (
-    <PageContainer title="Mon chemin" subtitle="Un aperçu simple et sobre de votre parcours spirituel.">
+    <PageContainer title="Mon chemin" subtitle="Un aperçu de votre parcours spirituel.">
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-10">
         {stats.map((s) => (
           <div key={s.label} className="liquid-glass-panel rounded-xl p-4 text-center">
