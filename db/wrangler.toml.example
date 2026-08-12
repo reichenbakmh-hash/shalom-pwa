@@ -15,7 +15,7 @@ compatibility_date = "2024-09-01"
 [[d1_databases]]
 binding = "DB"                   # accessible dans le Worker via env.DB
 database_name = "shalom-db"
-database_id = "REMPLACER_PAR_L_ID_RETOURNE_PAR_WRANGLER"
+database_id = "749e1ee5-62a7-4ba3-9add-9ef1041aa123"
 
 # Variables d'environnement non sensibles
 [vars]
