@@ -1,0 +1,25 @@
+# Configuration Wrangler pour le futur Worker SHALOM (API + accès D1).
+# Ce fichier n'est pas nécessaire pour déployer le FRONTEND sur Cloudflare Pages —
+# il sert uniquement quand vous construirez le backend (étape 2 du guide de déploiement).
+#
+# Usage :
+#   1. npx wrangler d1 create shalom-db
+#   2. Copier le "database_id" retourné ci-dessous
+#   3. npx wrangler d1 execute shalom-db --file=./db/schema.sql
+#   4. npx wrangler deploy
+
+name = "shalom-api"
+main = "src/worker.ts"           # à créer quand vous développerez les routes /api/*
+compatibility_date = "2024-09-01"
+
+[[d1_databases]]
+binding = "DB"                   # accessible dans le Worker via env.DB
+database_name = "shalom-db"
+database_id = "REMPLACER_PAR_L_ID_RETOURNE_PAR_WRANGLER"
+
+# Variables d'environnement non sensibles
+[vars]
+ENVIRONMENT = "production"
+
+# Les secrets (clé API du modèle IA, etc.) ne vont JAMAIS ici :
+#   npx wrangler secret put ANTHROPIC_API_KEY
