@@ -6,7 +6,7 @@ import type { AIMessage } from '../types'
 
 // Remplacez par l'URL de votre Worker une fois déployé
 // (idéalement via une variable d'environnement Vite : import.meta.env.VITE_API_URL)
-const API_URL = 'https://shalom-api.VOTRE-SOUS-DOMAINE.workers.dev'
+const API_URL = 'https://shalom-api.reichenbakmh.workers.dev'
 
 const modes: { id: AIMessage['mode']; label: string; icon: typeof BookOpen; hint: string }[] = [
   { id: 'comprendre', label: 'Comprendre', icon: BookOpen, hint: 'Expliquer un passage biblique' },
