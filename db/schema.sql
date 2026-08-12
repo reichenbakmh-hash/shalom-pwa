@@ -1,8 +1,3 @@
--- SHALOM — schéma Cloudflare D1 (SQLite)
--- Convention : identifiants texte (uuid généré côté Worker), timestamps ISO8601 en TEXT.
--- Ce schéma reflète les types définis dans src/types.ts pour que le frontend
--- local-first (localStorage) puisse être synchronisé sans changement de forme.
-
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS users (
@@ -14,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS bible_books (
-  id             TEXT PRIMARY KEY,        -- ex: 'jn'
+  id             TEXT PRIMARY KEY,        
   name           TEXT NOT NULL,
   testament      TEXT NOT NULL CHECK (testament IN ('ancien', 'nouveau')),
   book_order     INTEGER NOT NULL,
@@ -22,16 +17,16 @@ CREATE TABLE IF NOT EXISTS bible_books (
 );
 
 CREATE TABLE IF NOT EXISTS bible_chapters (
-  id       TEXT PRIMARY KEY,             -- ex: 'jn-14'
+  id       TEXT PRIMARY KEY,             
   book_id  TEXT NOT NULL REFERENCES bible_books(id),
   number   INTEGER NOT NULL,
   UNIQUE (book_id, number)
 );
 
 CREATE TABLE IF NOT EXISTS bible_verses (
-  id           TEXT PRIMARY KEY,         -- ex: 'jn-14-27'
+  id           TEXT PRIMARY KEY,         
   chapter_id   TEXT NOT NULL REFERENCES bible_chapters(id),
-  translation  TEXT NOT NULL DEFAULT 'demo', -- code de traduction sous licence à intégrer
+  translation  TEXT NOT NULL DEFAULT 'demo', 
   verse        INTEGER NOT NULL,
   text         TEXT NOT NULL
 );
@@ -39,7 +34,7 @@ CREATE INDEX IF NOT EXISTS idx_bible_verses_chapter ON bible_verses(chapter_id);
 
 CREATE TABLE IF NOT EXISTS daily_verses (
   id          TEXT PRIMARY KEY,
-  date        TEXT NOT NULL UNIQUE,      -- yyyy-mm-dd
+  date        TEXT NOT NULL UNIQUE,      
   reference   TEXT NOT NULL,
   text        TEXT NOT NULL,
   meditation  TEXT NOT NULL
@@ -80,7 +75,7 @@ CREATE TABLE IF NOT EXISTS journal_entries (
   title       TEXT NOT NULL,
   content     TEXT NOT NULL,
   category    TEXT,
-  tags        TEXT,                     -- JSON array sérialisé
+  tags        TEXT,                     
   created_at  TEXT NOT NULL DEFAULT (datetime('now'))
 );
 CREATE INDEX IF NOT EXISTS idx_journal_user ON journal_entries(user_id);
