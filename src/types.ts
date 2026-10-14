@@ -1,6 +1,3 @@
-// Types partagés — reflètent (en miroir) le schéma D1 défini dans /db/schema.sql
-// afin que le frontend puisse évoluer vers le backend sans changement de forme.
-
 export type ViewId =
   | 'home'
   | 'bible'
@@ -9,7 +6,6 @@ export type ViewId =
   | 'journey'
   | 'journal'
   | 'explore'
-  | 'ai'
   | 'profile'
 
 export interface DailyVerse {
@@ -34,9 +30,43 @@ export interface BibleChapter {
   verses: BibleVerse[]
 }
 
+export interface BibleManifest {
+  translation: string
+  translationName: string
+  language: string
+  version: string
+  source: string
+  license: string
+  generatedAt: string
+  verified: boolean
+  totals: { books: number; chapters: number; verses: number }
+  books: { id: string; chapters: number; verses: number[]; bytes: number }[]
+}
+
+export interface BibleNote {
+  id: string
+  bookId: string
+  chapter: number
+  verse: number
+  text: string
+  updatedAt: string
+}
+
+export interface BibleHistoryEntry {
+  bookId: string
+  chapter: number
+  at: string
+}
+
+export interface BibleOfflineState {
+  version: string
+  completedAt: string
+}
+
 export interface BibleBook {
   id: string
   name: string
+  abbr: string
   testament: 'ancien' | 'nouveau'
   order: number
   chapterCount: number
@@ -114,6 +144,9 @@ export interface FavoriteVerse {
   reference: string
   text: string
   savedAt: string
+  bookId?: string
+  chapter?: number
+  verse?: number
 }
 
 export interface NotificationSettings {
@@ -122,12 +155,4 @@ export interface NotificationSettings {
   prayer: { enabled: boolean; time: string }
   meditation: { enabled: boolean; time: string }
   journey: { enabled: boolean; time: string }
-}
-
-export interface AIMessage {
-  id: string
-  role: 'user' | 'assistant'
-  mode: 'comprendre' | 'mediter' | 'prier' | 'explorer' | 'etudier'
-  content: string
-  createdAt: string
 }

@@ -1,9 +1,3 @@
-// Couche de persistance locale-first.
-// Chaque fonction lit/écrit dans localStorage sous une clé préfixée "shalom:".
-// Conçue pour être remplacée/complétée demain par des appels au Worker Cloudflare
-// (POST /api/sync) sans changer la forme des données côté composants :
-// il suffira d'ajouter un "push" en arrière-plan après chaque set().
-
 const PREFIX = 'shalom:'
 
 function read<T>(key: string, fallback: T): T {
@@ -16,11 +10,12 @@ function read<T>(key: string, fallback: T): T {
   }
 }
 
-function write<T>(key: string, value: T): void {
+function write<T>(key: string, value: T): boolean {
   try {
     localStorage.setItem(PREFIX + key, JSON.stringify(value))
+    return true
   } catch {
-    // stockage indisponible (mode privé, quota) — l'app continue sans persister
+    return false
   }
 }
 
@@ -28,7 +23,11 @@ export const storage = {
   get: read,
   set: write,
   remove(key: string) {
-    localStorage.removeItem(PREFIX + key)
+    try {
+      localStorage.removeItem(PREFIX + key)
+    } catch {
+      return
+    }
   },
 }
 
@@ -41,5 +40,9 @@ export const STORAGE_KEYS = {
   notificationSettings: 'notification_settings',
   bibleReadingHistory: 'bible_reading_history',
   bibleNotes: 'bible_notes',
-  aiConversation: 'ai_conversation',
+  bibleOffline: 'bible_offline',
 } as const
+
+export function purgeRemovedFeatureData() {
+  storage.remove('ai_conversation')
+}

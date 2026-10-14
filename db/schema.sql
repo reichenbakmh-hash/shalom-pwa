@@ -8,30 +8,6 @@ CREATE TABLE IF NOT EXISTS users (
   updated_at    TEXT NOT NULL DEFAULT (datetime('now'))
 );
 
-CREATE TABLE IF NOT EXISTS bible_books (
-  id             TEXT PRIMARY KEY,        
-  name           TEXT NOT NULL,
-  testament      TEXT NOT NULL CHECK (testament IN ('ancien', 'nouveau')),
-  book_order     INTEGER NOT NULL,
-  chapter_count  INTEGER NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS bible_chapters (
-  id       TEXT PRIMARY KEY,             
-  book_id  TEXT NOT NULL REFERENCES bible_books(id),
-  number   INTEGER NOT NULL,
-  UNIQUE (book_id, number)
-);
-
-CREATE TABLE IF NOT EXISTS bible_verses (
-  id           TEXT PRIMARY KEY,         
-  chapter_id   TEXT NOT NULL REFERENCES bible_chapters(id),
-  translation  TEXT NOT NULL DEFAULT 'demo', 
-  verse        INTEGER NOT NULL,
-  text         TEXT NOT NULL
-);
-CREATE INDEX IF NOT EXISTS idx_bible_verses_chapter ON bible_verses(chapter_id);
-
 CREATE TABLE IF NOT EXISTS daily_verses (
   id          TEXT PRIMARY KEY,
   date        TEXT NOT NULL UNIQUE,      
@@ -43,7 +19,7 @@ CREATE TABLE IF NOT EXISTS daily_verses (
 CREATE TABLE IF NOT EXISTS reading_progress (
   id            TEXT PRIMARY KEY,
   user_id       TEXT NOT NULL REFERENCES users(id),
-  book_id       TEXT NOT NULL REFERENCES bible_books(id),
+  book_id       TEXT NOT NULL,
   chapter_number INTEGER NOT NULL,
   updated_at    TEXT NOT NULL DEFAULT (datetime('now'))
 );
@@ -112,13 +88,3 @@ CREATE TABLE IF NOT EXISTS notifications (
   enabled     INTEGER NOT NULL DEFAULT 1,
   time        TEXT NOT NULL DEFAULT '07:00'
 );
-
-CREATE TABLE IF NOT EXISTS ai_conversations (
-  id          TEXT PRIMARY KEY,
-  user_id     TEXT NOT NULL REFERENCES users(id),
-  mode        TEXT NOT NULL CHECK (mode IN ('comprendre', 'mediter', 'prier', 'explorer', 'etudier')),
-  role        TEXT NOT NULL CHECK (role IN ('user', 'assistant')),
-  content     TEXT NOT NULL,
-  created_at  TEXT NOT NULL DEFAULT (datetime('now'))
-);
-CREATE INDEX IF NOT EXISTS idx_ai_conversations_user ON ai_conversations(user_id);

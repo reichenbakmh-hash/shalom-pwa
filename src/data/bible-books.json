@@ -1,0 +1,530 @@
+[
+  {
+    "id": "gen",
+    "name": "Genèse",
+    "abbr": "Ge",
+    "testament": "ancien",
+    "order": 1,
+    "chapterCount": 50
+  },
+  {
+    "id": "exo",
+    "name": "Exode",
+    "abbr": "Ex",
+    "testament": "ancien",
+    "order": 2,
+    "chapterCount": 40
+  },
+  {
+    "id": "lev",
+    "name": "Lévitique",
+    "abbr": "Lé",
+    "testament": "ancien",
+    "order": 3,
+    "chapterCount": 27
+  },
+  {
+    "id": "num",
+    "name": "Nombres",
+    "abbr": "Nb",
+    "testament": "ancien",
+    "order": 4,
+    "chapterCount": 36
+  },
+  {
+    "id": "deu",
+    "name": "Deutéronome",
+    "abbr": "De",
+    "testament": "ancien",
+    "order": 5,
+    "chapterCount": 34
+  },
+  {
+    "id": "jos",
+    "name": "Josué",
+    "abbr": "Jos",
+    "testament": "ancien",
+    "order": 6,
+    "chapterCount": 24
+  },
+  {
+    "id": "jdg",
+    "name": "Juges",
+    "abbr": "Jg",
+    "testament": "ancien",
+    "order": 7,
+    "chapterCount": 21
+  },
+  {
+    "id": "rut",
+    "name": "Ruth",
+    "abbr": "Ru",
+    "testament": "ancien",
+    "order": 8,
+    "chapterCount": 4
+  },
+  {
+    "id": "1sa",
+    "name": "1 Samuel",
+    "abbr": "1S",
+    "testament": "ancien",
+    "order": 9,
+    "chapterCount": 31
+  },
+  {
+    "id": "2sa",
+    "name": "2 Samuel",
+    "abbr": "2S",
+    "testament": "ancien",
+    "order": 10,
+    "chapterCount": 24
+  },
+  {
+    "id": "1ki",
+    "name": "1 Rois",
+    "abbr": "1R",
+    "testament": "ancien",
+    "order": 11,
+    "chapterCount": 22
+  },
+  {
+    "id": "2ki",
+    "name": "2 Rois",
+    "abbr": "2R",
+    "testament": "ancien",
+    "order": 12,
+    "chapterCount": 25
+  },
+  {
+    "id": "1ch",
+    "name": "1 Chroniques",
+    "abbr": "1Ch",
+    "testament": "ancien",
+    "order": 13,
+    "chapterCount": 29
+  },
+  {
+    "id": "2ch",
+    "name": "2 Chroniques",
+    "abbr": "2Ch",
+    "testament": "ancien",
+    "order": 14,
+    "chapterCount": 36
+  },
+  {
+    "id": "ezr",
+    "name": "Esdras",
+    "abbr": "Esd",
+    "testament": "ancien",
+    "order": 15,
+    "chapterCount": 10
+  },
+  {
+    "id": "neh",
+    "name": "Néhémie",
+    "abbr": "Né",
+    "testament": "ancien",
+    "order": 16,
+    "chapterCount": 13
+  },
+  {
+    "id": "est",
+    "name": "Esther",
+    "abbr": "Est",
+    "testament": "ancien",
+    "order": 17,
+    "chapterCount": 10
+  },
+  {
+    "id": "job",
+    "name": "Job",
+    "abbr": "Job",
+    "testament": "ancien",
+    "order": 18,
+    "chapterCount": 42
+  },
+  {
+    "id": "psa",
+    "name": "Psaumes",
+    "abbr": "Ps",
+    "testament": "ancien",
+    "order": 19,
+    "chapterCount": 150
+  },
+  {
+    "id": "pro",
+    "name": "Proverbes",
+    "abbr": "Pr",
+    "testament": "ancien",
+    "order": 20,
+    "chapterCount": 31
+  },
+  {
+    "id": "ecc",
+    "name": "Ecclésiaste",
+    "abbr": "Ec",
+    "testament": "ancien",
+    "order": 21,
+    "chapterCount": 12
+  },
+  {
+    "id": "sng",
+    "name": "Cantique des cantiques",
+    "abbr": "Ca",
+    "testament": "ancien",
+    "order": 22,
+    "chapterCount": 8
+  },
+  {
+    "id": "isa",
+    "name": "Ésaïe",
+    "abbr": "Es",
+    "testament": "ancien",
+    "order": 23,
+    "chapterCount": 66
+  },
+  {
+    "id": "jer",
+    "name": "Jérémie",
+    "abbr": "Jé",
+    "testament": "ancien",
+    "order": 24,
+    "chapterCount": 52
+  },
+  {
+    "id": "lam",
+    "name": "Lamentations",
+    "abbr": "La",
+    "testament": "ancien",
+    "order": 25,
+    "chapterCount": 5
+  },
+  {
+    "id": "ezk",
+    "name": "Ézéchiel",
+    "abbr": "Ez",
+    "testament": "ancien",
+    "order": 26,
+    "chapterCount": 48
+  },
+  {
+    "id": "dan",
+    "name": "Daniel",
+    "abbr": "Da",
+    "testament": "ancien",
+    "order": 27,
+    "chapterCount": 12
+  },
+  {
+    "id": "hos",
+    "name": "Osée",
+    "abbr": "Os",
+    "testament": "ancien",
+    "order": 28,
+    "chapterCount": 14
+  },
+  {
+    "id": "jol",
+    "name": "Joël",
+    "abbr": "Joë",
+    "testament": "ancien",
+    "order": 29,
+    "chapterCount": 3
+  },
+  {
+    "id": "amo",
+    "name": "Amos",
+    "abbr": "Am",
+    "testament": "ancien",
+    "order": 30,
+    "chapterCount": 9
+  },
+  {
+    "id": "oba",
+    "name": "Abdias",
+    "abbr": "Ab",
+    "testament": "ancien",
+    "order": 31,
+    "chapterCount": 1
+  },
+  {
+    "id": "jon",
+    "name": "Jonas",
+    "abbr": "Jon",
+    "testament": "ancien",
+    "order": 32,
+    "chapterCount": 4
+  },
+  {
+    "id": "mic",
+    "name": "Michée",
+    "abbr": "Mi",
+    "testament": "ancien",
+    "order": 33,
+    "chapterCount": 7
+  },
+  {
+    "id": "nam",
+    "name": "Nahum",
+    "abbr": "Na",
+    "testament": "ancien",
+    "order": 34,
+    "chapterCount": 3
+  },
+  {
+    "id": "hab",
+    "name": "Habacuc",
+    "abbr": "Ha",
+    "testament": "ancien",
+    "order": 35,
+    "chapterCount": 3
+  },
+  {
+    "id": "zep",
+    "name": "Sophonie",
+    "abbr": "So",
+    "testament": "ancien",
+    "order": 36,
+    "chapterCount": 3
+  },
+  {
+    "id": "hag",
+    "name": "Aggée",
+    "abbr": "Ag",
+    "testament": "ancien",
+    "order": 37,
+    "chapterCount": 2
+  },
+  {
+    "id": "zec",
+    "name": "Zacharie",
+    "abbr": "Za",
+    "testament": "ancien",
+    "order": 38,
+    "chapterCount": 14
+  },
+  {
+    "id": "mal",
+    "name": "Malachie",
+    "abbr": "Mal",
+    "testament": "ancien",
+    "order": 39,
+    "chapterCount": 4
+  },
+  {
+    "id": "mat",
+    "name": "Matthieu",
+    "abbr": "Mt",
+    "testament": "nouveau",
+    "order": 40,
+    "chapterCount": 28
+  },
+  {
+    "id": "mrk",
+    "name": "Marc",
+    "abbr": "Mc",
+    "testament": "nouveau",
+    "order": 41,
+    "chapterCount": 16
+  },
+  {
+    "id": "luk",
+    "name": "Luc",
+    "abbr": "Lc",
+    "testament": "nouveau",
+    "order": 42,
+    "chapterCount": 24
+  },
+  {
+    "id": "jhn",
+    "name": "Jean",
+    "abbr": "Jn",
+    "testament": "nouveau",
+    "order": 43,
+    "chapterCount": 21
+  },
+  {
+    "id": "act",
+    "name": "Actes",
+    "abbr": "Ac",
+    "testament": "nouveau",
+    "order": 44,
+    "chapterCount": 28
+  },
+  {
+    "id": "rom",
+    "name": "Romains",
+    "abbr": "Ro",
+    "testament": "nouveau",
+    "order": 45,
+    "chapterCount": 16
+  },
+  {
+    "id": "1co",
+    "name": "1 Corinthiens",
+    "abbr": "1Co",
+    "testament": "nouveau",
+    "order": 46,
+    "chapterCount": 16
+  },
+  {
+    "id": "2co",
+    "name": "2 Corinthiens",
+    "abbr": "2Co",
+    "testament": "nouveau",
+    "order": 47,
+    "chapterCount": 13
+  },
+  {
+    "id": "gal",
+    "name": "Galates",
+    "abbr": "Ga",
+    "testament": "nouveau",
+    "order": 48,
+    "chapterCount": 6
+  },
+  {
+    "id": "eph",
+    "name": "Éphésiens",
+    "abbr": "Ep",
+    "testament": "nouveau",
+    "order": 49,
+    "chapterCount": 6
+  },
+  {
+    "id": "php",
+    "name": "Philippiens",
+    "abbr": "Ph",
+    "testament": "nouveau",
+    "order": 50,
+    "chapterCount": 4
+  },
+  {
+    "id": "col",
+    "name": "Colossiens",
+    "abbr": "Col",
+    "testament": "nouveau",
+    "order": 51,
+    "chapterCount": 4
+  },
+  {
+    "id": "1th",
+    "name": "1 Thessaloniciens",
+    "abbr": "1Th",
+    "testament": "nouveau",
+    "order": 52,
+    "chapterCount": 5
+  },
+  {
+    "id": "2th",
+    "name": "2 Thessaloniciens",
+    "abbr": "2Th",
+    "testament": "nouveau",
+    "order": 53,
+    "chapterCount": 3
+  },
+  {
+    "id": "1ti",
+    "name": "1 Timothée",
+    "abbr": "1Ti",
+    "testament": "nouveau",
+    "order": 54,
+    "chapterCount": 6
+  },
+  {
+    "id": "2ti",
+    "name": "2 Timothée",
+    "abbr": "2Ti",
+    "testament": "nouveau",
+    "order": 55,
+    "chapterCount": 4
+  },
+  {
+    "id": "tit",
+    "name": "Tite",
+    "abbr": "Tit",
+    "testament": "nouveau",
+    "order": 56,
+    "chapterCount": 3
+  },
+  {
+    "id": "phm",
+    "name": "Philémon",
+    "abbr": "Phm",
+    "testament": "nouveau",
+    "order": 57,
+    "chapterCount": 1
+  },
+  {
+    "id": "heb",
+    "name": "Hébreux",
+    "abbr": "Hé",
+    "testament": "nouveau",
+    "order": 58,
+    "chapterCount": 13
+  },
+  {
+    "id": "jas",
+    "name": "Jacques",
+    "abbr": "Ja",
+    "testament": "nouveau",
+    "order": 59,
+    "chapterCount": 5
+  },
+  {
+    "id": "1pe",
+    "name": "1 Pierre",
+    "abbr": "1P",
+    "testament": "nouveau",
+    "order": 60,
+    "chapterCount": 5
+  },
+  {
+    "id": "2pe",
+    "name": "2 Pierre",
+    "abbr": "2P",
+    "testament": "nouveau",
+    "order": 61,
+    "chapterCount": 3
+  },
+  {
+    "id": "1jn",
+    "name": "1 Jean",
+    "abbr": "1Jn",
+    "testament": "nouveau",
+    "order": 62,
+    "chapterCount": 5
+  },
+  {
+    "id": "2jn",
+    "name": "2 Jean",
+    "abbr": "2Jn",
+    "testament": "nouveau",
+    "order": 63,
+    "chapterCount": 1
+  },
+  {
+    "id": "3jn",
+    "name": "3 Jean",
+    "abbr": "3Jn",
+    "testament": "nouveau",
+    "order": 64,
+    "chapterCount": 1
+  },
+  {
+    "id": "jud",
+    "name": "Jude",
+    "abbr": "Jud",
+    "testament": "nouveau",
+    "order": 65,
+    "chapterCount": 1
+  },
+  {
+    "id": "rev",
+    "name": "Apocalypse",
+    "abbr": "Ap",
+    "testament": "nouveau",
+    "order": 66,
+    "chapterCount": 22
+  }
+]

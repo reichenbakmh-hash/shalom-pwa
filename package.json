@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "bible:import": "node scripts/import-bible.mjs",
+    "bible:check": "node scripts/check-bible.mjs",
+    "build:release": "node scripts/check-bible.mjs && tsc && vite build"
   },
   "dependencies": {
     "react": "^18.3.1",

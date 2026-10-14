@@ -52,12 +52,6 @@ export default function Navbar({ current, onNavigate, menuOpen, onToggleMenu }: 
 
       <div className="hidden md:flex items-center gap-3">
         <button
-          onClick={() => onNavigate('ai')}
-          className="liquid-glass text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/5 transition-colors"
-        >
-          Shalom AI
-        </button>
-        <button
           onClick={() => onNavigate('journal')}
           className="bg-white text-black text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/90 transition-colors"
         >

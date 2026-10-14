@@ -8,7 +8,6 @@ import Meditation from './pages/Meditation'
 import Journey from './pages/Journey'
 import JournalPage from './pages/Journal'
 import Explore from './pages/Explore'
-import AIChat from './pages/AIChat'
 import Profile from './pages/Profile'
 import type { ViewId } from './types'
 
@@ -33,7 +32,6 @@ export default function App() {
       {view === 'journey' && <Journey />}
       {view === 'journal' && <JournalPage />}
       {view === 'explore' && <Explore />}
-      {view === 'ai' && <AIChat />}
       {view === 'profile' && <Profile />}
     </div>
   )

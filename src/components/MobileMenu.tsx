@@ -9,7 +9,6 @@ interface Props {
 const extraItems: { id: ViewId; label: string }[] = [
   { id: 'journal', label: 'Mon journal' },
   { id: 'explore', label: 'Explorer' },
-  { id: 'ai', label: 'Shalom AI' },
 ]
 
 export default function MobileMenu({ current, onNavigate }: Props) {
