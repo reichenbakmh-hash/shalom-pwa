@@ -60,7 +60,7 @@ export default function BibleOfflinePanel({ onChange }: Props) {
       onChange()
     } catch (e) {
       if (!(e instanceof BibleError && e.code === 'aborted')) {
-        setError(e instanceof BibleError ? e.message : 'Le téléchargement a échoué. Réessayez avec une connexion stable.')
+        setError(e instanceof BibleError ? e.message : 'Le téléchargement a échoué. Réessaie avec une connexion stable.')
       }
     } finally {
       controller.current = null
@@ -76,19 +76,19 @@ export default function BibleOfflinePanel({ onChange }: Props) {
   let title = 'Vérification…'
   let detail = ''
   if (status?.complete) {
-    title = 'Bible prête hors connexion'
-    detail = `${manifest?.translationName ?? 'Louis Segond 1910'} : ${status.total} livres disponibles sans connexion.`
+    title = 'La Bible est sur ton téléphone'
+    detail = `${manifest?.translationName ?? 'Louis Segond 1910'} : les ${status.total} livres se lisent sans connexion.`
   } else if (manifest?.verified) {
-    title = 'Bible à installer pour la lecture hors connexion'
-    detail = `${status?.installed ?? 0} livre(s) sur ${status?.total ?? 66} disponibles localement. Le téléchargement représente environ ${formatMegabytes(totalBytes)}.`
+    title = 'Installe la Bible pour la lire sans connexion'
+    detail = `${status?.installed ?? 0} livre(s) sur ${status?.total ?? 66} déjà sur l'appareil. Le téléchargement pèse environ ${formatMegabytes(totalBytes)}.`
   } else if (manifestChecked) {
-    title = 'Texte biblique non installé'
+    title = 'Le texte de la Bible n’est pas encore là'
     detail =
-      'Les fichiers de la Bible Louis Segond 1910 ne sont pas présents dans cette version de l’application. Lancez la préparation des textes (docs/BIBLE-SOURCE.md) puis recompilez.'
+      'Les fichiers de la Louis Segond 1910 ne sont pas dans cette version de l’application. Prépare-les avec npm run bible:import (voir docs/BIBLE-SOURCE.md), puis recompile.'
   }
 
   return (
-    <div className="liquid-glass-panel rounded-2xl p-5 mb-6">
+    <div className="surface rounded-2xl p-5 mb-6">
       <div className="flex items-start gap-3">
         {status?.complete ? (
           <CheckCircle2 size={18} className="text-emerald-300/80 mt-0.5 shrink-0" />
@@ -138,7 +138,7 @@ export default function BibleOfflinePanel({ onChange }: Props) {
         {downloading ? (
           <button
             onClick={() => controller.current?.abort()}
-            className="liquid-glass text-white/80 text-xs font-medium px-4 py-2 rounded-full"
+            className="control text-white/80 text-xs font-medium px-4 py-2 rounded-full"
           >
             Annuler
           </button>
@@ -153,13 +153,13 @@ export default function BibleOfflinePanel({ onChange }: Props) {
               {status?.complete
                 ? 'Mettre à jour'
                 : status && status.installed > 0
-                  ? 'Terminer l’installation'
+                  ? 'Reprendre le téléchargement'
                   : 'Télécharger la Bible'}
             </button>
           )
         )}
         {!online && !downloading && manifest?.verified && !status?.complete && (
-          <span className="text-white/40 text-xs self-center">Connexion requise</span>
+          <span className="text-white/40 text-xs self-center">Il faut une connexion</span>
         )}
       </div>
     </div>

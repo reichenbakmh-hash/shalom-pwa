@@ -9,15 +9,18 @@ import Journey from './pages/Journey'
 import JournalPage from './pages/Journal'
 import Explore from './pages/Explore'
 import Profile from './pages/Profile'
-import type { ViewId } from './types'
+import type { BibleIntent, BibleIntentInput, ViewId } from './types'
 
 export default function App() {
   const [view, setView] = useState<ViewId>('home')
   const [menuOpen, setMenuOpen] = useState(false)
+  const [bibleIntent, setBibleIntent] = useState<BibleIntent | null>(null)
 
-  function navigate(id: ViewId) {
+  function navigate(id: ViewId, intent?: BibleIntentInput) {
+    setBibleIntent(intent ? { ...intent, nonce: Date.now() } : null)
     setView(id)
     setMenuOpen(false)
+    window.scrollTo({ top: 0 })
   }
 
   return (
@@ -26,13 +29,13 @@ export default function App() {
       {menuOpen && <MobileMenu current={view} onNavigate={navigate} />}
 
       {view === 'home' && <Home onNavigate={navigate} />}
-      {view === 'bible' && <Bible />}
+      {view === 'bible' && <Bible intent={bibleIntent} />}
       {view === 'prayer' && <PrayerPage />}
       {view === 'meditation' && <Meditation />}
-      {view === 'journey' && <Journey />}
+      {view === 'journey' && <Journey onNavigate={navigate} />}
       {view === 'journal' && <JournalPage />}
-      {view === 'explore' && <Explore />}
-      {view === 'profile' && <Profile />}
+      {view === 'explore' && <Explore onNavigate={navigate} />}
+      {view === 'profile' && <Profile onNavigate={navigate} />}
     </div>
   )
 }

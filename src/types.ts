@@ -10,10 +10,14 @@ export type ViewId =
 
 export interface DailyVerse {
   id: string
-  date: string // ISO yyyy-mm-dd
+  date: string
   reference: string
   text: string
   meditation: string
+  bookId: string
+  chapter: number
+  verse: number
+  verseEnd?: number
 }
 
 export interface BibleVerse {
@@ -133,7 +137,7 @@ export interface MeditationSession {
 export interface Theme {
   id: string
   title: string
-  passages: { reference: string; text: string }[]
+  passages: ThemePassage[]
   meditations: string[]
   prayers: string[]
   reflectionQuestions: string[]
@@ -147,6 +151,47 @@ export interface FavoriteVerse {
   bookId?: string
   chapter?: number
   verse?: number
+  verseEnd?: number
+  folder?: string
+}
+
+export interface BibleBookmark {
+  id: string
+  bookId: string
+  chapter: number
+  savedAt: string
+}
+
+export type SearchScope = 'tous' | 'ancien' | 'nouveau'
+
+export interface SavedSearch {
+  id: string
+  query: string
+  scope: SearchScope
+  savedAt: string
+}
+
+export type BibleTab = 'lire' | 'chercher' | 'enregistres'
+
+export interface BibleIntent {
+  tab?: BibleTab
+  bookId?: string
+  chapter?: number
+  verse?: number
+  verseEnd?: number
+  query?: string
+  nonce: number
+}
+
+export type BibleIntentInput = Omit<BibleIntent, 'nonce'>
+
+export interface BiblePrefs {
+  textSize: 0 | 1 | 2
+}
+
+export interface ThemePassage {
+  reference: string
+  text: string
 }
 
 export interface NotificationSettings {

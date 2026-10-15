@@ -114,7 +114,27 @@ export function formatReference(
   verseStart?: number | null,
   verseEnd?: number | null,
 ): string {
-  if (!verseStart) return `${book.name} ${chapter}`
+  const label = book.id === 'psa' ? 'Psaume' : book.name
+  if (!verseStart) return `${label} ${chapter}`
   const suffix = verseEnd && verseEnd !== verseStart ? `${verseStart}-${verseEnd}` : `${verseStart}`
-  return `${book.name} ${chapter}:${suffix}`
+  return `${label} ${chapter}:${suffix}`
+}
+
+export function suggestBooks(input: string, books: BibleBook[], limit = 4): BibleBook[] {
+  const key = compact(input)
+  if (key.length < 2) return []
+  const starts: BibleBook[] = []
+  const contains: BibleBook[] = []
+  for (const b of books) {
+    const name = compact(b.name)
+    if (name.startsWith(key) || compact(b.abbr) === key) starts.push(b)
+    else if (key.length >= 3 && name.includes(key)) contains.push(b)
+  }
+  return [...starts, ...contains].slice(0, limit)
+}
+
+export function normalizeForSearch(input: string): string {
+  return foldText(input)
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
 }

@@ -1,11 +1,16 @@
 import { useState } from 'react'
-import { Check, ChevronLeft, ChevronRight } from 'lucide-react'
+import { BookOpen, Check, ChevronLeft, ChevronRight } from 'lucide-react'
 import PageContainer from '../components/PageContainer'
 import { journey40 } from '../data/journey40'
 import { storage, STORAGE_KEYS } from '../lib/storage'
-import type { JourneyProgress } from '../types'
+import { resolveReference } from '../lib/passage'
+import type { BibleIntentInput, JourneyProgress, ViewId } from '../types'
 
-export default function Journey() {
+interface Props {
+  onNavigate: (id: ViewId, intent?: BibleIntentInput) => void
+}
+
+export default function Journey({ onNavigate }: Props) {
   const [progress, setProgress] = useState<JourneyProgress>(() =>
     storage.get<JourneyProgress>(STORAGE_KEYS.journeyProgress, { completedDays: [] }),
   )
@@ -14,6 +19,7 @@ export default function Journey() {
 
   const current = journey40[dayIndex]
   const isDone = progress.completedDays.includes(current.day)
+  const passage = resolveReference(current.reference)
 
   function completeDay() {
     if (isDone) return
@@ -27,10 +33,10 @@ export default function Journey() {
   }
 
   return (
-    <PageContainer title="40 jours avec les Évangiles" subtitle="Un jour à la fois, à votre rythme.">
+    <PageContainer title="40 jours avec les Évangiles" subtitle="Un jour à la fois, à ton rythme.">
       <div className="flex items-center justify-between mb-2">
         <span className="text-white/50 text-xs">
-          {progress.completedDays.length} / {journey40.length} jours complétés
+          {progress.completedDays.length} / {journey40.length} jours terminés
         </span>
         <span className="text-white/50 text-xs">Jour {current.day} / 40</span>
       </div>
@@ -41,7 +47,7 @@ export default function Journey() {
         />
       </div>
 
-      <div className="liquid-glass-panel rounded-2xl p-6 sm:p-8">
+      <div className="surface rounded-2xl p-6 sm:p-8">
         <div className="flex items-center justify-between mb-4">
           <button
             onClick={() => setDayIndex((i) => Math.max(0, i - 1))}
@@ -65,6 +71,23 @@ export default function Journey() {
         <h3 className="text-white text-xl font-medium text-center">{current.title}</h3>
         <p className="text-white/50 text-sm text-center mt-1">{current.reference}</p>
         <p className="text-white/70 text-sm leading-relaxed mt-5">{current.passageSummary}</p>
+        {passage && passage.verse && (
+          <button
+            type="button"
+            onClick={() =>
+              onNavigate('bible', {
+                tab: 'lire',
+                bookId: passage.book.id,
+                chapter: passage.chapter,
+                verse: passage.verse ?? undefined,
+                verseEnd: passage.verseEnd ?? undefined,
+              })
+            }
+            className="control flex items-center gap-2 text-white/80 hover:text-white text-sm px-4 py-2.5 rounded-full mt-4"
+          >
+            <BookOpen size={14} /> Lire le passage
+          </button>
+        )}
 
         <div className="mt-6 space-y-5">
           <div>
@@ -72,15 +95,15 @@ export default function Journey() {
             <p className="text-white/75 text-sm leading-relaxed mt-1.5">{current.meditation}</p>
           </div>
           <div>
-            <span className="text-white/40 text-xs uppercase tracking-widest">Réflexion</span>
-            <p className="text-white/75 text-sm leading-relaxed mt-1.5 italic">{current.reflectionQuestion}</p>
+            <span className="text-white/40 text-xs uppercase tracking-widest">Pour y réfléchir</span>
+            <p className="text-white/75 text-sm leading-relaxed mt-1.5">{current.reflectionQuestion}</p>
           </div>
           <div>
             <span className="text-white/40 text-xs uppercase tracking-widest">Prière</span>
             <p className="text-white/75 text-sm leading-relaxed mt-1.5">{current.prayer}</p>
           </div>
           <div>
-            <span className="text-white/40 text-xs uppercase tracking-widest">Action du jour</span>
+            <span className="text-white/40 text-xs uppercase tracking-widest">À faire aujourd'hui</span>
             <p className="text-white/75 text-sm leading-relaxed mt-1.5">{current.action}</p>
           </div>
         </div>

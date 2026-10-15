@@ -1,7 +1,7 @@
 {
-  "name": "SHALOM — Marche dans la foi, demeure dans la grâce",
+  "name": "SHALOM — Bible, prière et méditation",
   "short_name": "SHALOM",
-  "description": "Une PWA chrétienne pour méditer la Parole, prier, et avancer dans la foi.",
+  "description": "Lire la Bible, prier, méditer et garder une trace de ce qui compte.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

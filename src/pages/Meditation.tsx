@@ -3,6 +3,7 @@ import { Play, Pause, RotateCcw } from 'lucide-react'
 import PageContainer from '../components/PageContainer'
 import { getVerseForDate } from '../data/dailyVerses'
 import { storage, STORAGE_KEYS } from '../lib/storage'
+import { usePassageText } from '../lib/passage'
 import type { MeditationSession } from '../types'
 
 const durations = [3, 5, 10, 15]
@@ -13,6 +14,7 @@ function uid() {
 
 export default function Meditation() {
   const verse = getVerseForDate()
+  const verseText = usePassageText(verse.bookId, verse.chapter, verse.verse, verse.verseEnd, verse.text)
   const [duration, setDuration] = useState(5)
   const [secondsLeft, setSecondsLeft] = useState(duration * 60)
   const [running, setRunning] = useState(false)
@@ -70,10 +72,10 @@ export default function Meditation() {
   const progress = 1 - secondsLeft / (duration * 60)
 
   return (
-    <PageContainer title="Méditation" subtitle="Un espace de silence pour laisser la Parole s'enraciner.">
-      <div className="liquid-glass-panel rounded-2xl p-6 sm:p-8 text-center">
+    <PageContainer title="Méditation" subtitle="Quelques minutes de silence avec le verset du jour.">
+      <div className="surface rounded-2xl p-6 sm:p-8 text-center">
         <span className="text-white/40 text-xs uppercase tracking-widest">{verse.reference}</span>
-        <p className="text-white/80 text-sm leading-relaxed mt-3 max-w-md mx-auto">{verse.text}</p>
+        <p className="text-white/80 text-sm leading-relaxed mt-3 max-w-md mx-auto">{verseText}</p>
 
         <div className="flex justify-center gap-2 my-8">
           {durations.map((d) => (
@@ -81,7 +83,7 @@ export default function Meditation() {
               key={d}
               onClick={() => setDuration(d)}
               className={`px-3.5 py-2 rounded-full text-xs transition-colors ${
-                duration === d ? 'bg-white text-black' : 'liquid-glass text-white/60'
+                duration === d ? 'bg-white text-black' : 'control text-white/60'
               }`}
             >
               {d} min
@@ -121,7 +123,7 @@ export default function Meditation() {
             </button>
             <button
               onClick={reset}
-              className="liquid-glass text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/5 transition-colors"
+              className="control text-white w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/5 transition-colors"
               aria-label="Réinitialiser"
             >
               <RotateCcw size={16} />
@@ -130,12 +132,12 @@ export default function Meditation() {
         ) : (
           <div className="text-left animate-fadeIn">
             <p className="text-white/70 text-sm text-center mb-4">
-              Qu'est-ce que cette Parole fait naître en toi aujourd'hui ?
+              Qu'est-ce que ce verset te dit aujourd'hui ?
             </p>
             <textarea
               value={reflection}
               onChange={(e) => setReflection(e.target.value)}
-              placeholder="Écris librement…"
+              placeholder="Écris ce qui te vient…"
               rows={4}
               className="w-full bg-white/5 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 outline-none resize-none mb-4"
             />
@@ -144,9 +146,9 @@ export default function Meditation() {
                 onClick={saveSession}
                 className="bg-white text-black text-sm font-medium px-5 py-2.5 rounded-full hover:bg-white/90 transition-colors"
               >
-                Enregistrer la session
+                Garder cette session
               </button>
-              <button onClick={reset} className="liquid-glass text-white text-sm px-5 py-2.5 rounded-full">
+              <button onClick={reset} className="control text-white text-sm px-5 py-2.5 rounded-full">
                 Recommencer
               </button>
             </div>

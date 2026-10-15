@@ -1,9 +1,10 @@
 import booksData from '../data/bible-books.json'
-import { foldText } from './bibleRef'
 import { storage, STORAGE_KEYS } from './storage'
 import type { BibleBook, BibleChapter, BibleManifest, BibleOfflineState } from '../types'
 
 export const bibleBooks = booksData as BibleBook[]
+
+export const TRANSLATION_LABEL = 'Louis Segond 1910'
 
 export type BibleErrorCode = 'not_installed' | 'offline' | 'invalid' | 'quota' | 'aborted'
 
@@ -294,57 +295,20 @@ export async function downloadBible(
   return manifest
 }
 
-export interface SearchHit {
-  bookId: string
-  chapter: number
-  verse: number
-  text: string
-}
-
-export interface SearchOutcome {
-  hits: SearchHit[]
-  truncated: boolean
-  skippedBooks: number
-}
-
-export async function searchText(
-  query: string,
-  scope: 'tous' | 'ancien' | 'nouveau',
-  onProgress: (done: number, total: number) => void,
-  signal: AbortSignal,
-  limit = 150,
-): Promise<SearchOutcome> {
-  const quoted = /^"(.+)"$/.exec(query.trim())
-  const terms = quoted ? [foldText(quoted[1]).trim()] : foldText(query).split(/\s+/).filter(Boolean)
-  const books = bibleBooks.filter((b) => scope === 'tous' || b.testament === scope)
-  const hits: SearchHit[] = []
-  let skippedBooks = 0
-  let truncated = false
-  if (terms.length === 0 || terms.every((t) => !t)) return { hits, truncated, skippedBooks }
-
-  for (let i = 0; i < books.length && !truncated; i++) {
-    if (signal.aborted) break
-    onProgress(i, books.length)
-    let chapters: string[][]
-    try {
-      chapters = await loadBook(books[i].id)
-    } catch {
-      skippedBooks++
-      continue
-    }
-    for (let c = 0; c < chapters.length && !truncated; c++) {
-      for (let v = 0; v < chapters[c].length; v++) {
-        const folded = foldText(chapters[c][v])
-        if (terms.every((t) => folded.includes(t))) {
-          hits.push({ bookId: books[i].id, chapter: c + 1, verse: v + 1, text: chapters[c][v] })
-          if (hits.length >= limit) {
-            truncated = true
-            break
-          }
-        }
-      }
-    }
+export async function getPassageText(
+  bookId: string,
+  chapter: number,
+  verseStart: number,
+  verseEnd?: number,
+): Promise<string | null> {
+  try {
+    const chapters = await loadBook(bookId)
+    const verses = chapters[chapter - 1]
+    if (!verses) return null
+    const end = Math.min(verseEnd ?? verseStart, verses.length)
+    if (verseStart < 1 || verseStart > end) return null
+    return verses.slice(verseStart - 1, end).join(' ')
+  } catch {
+    return null
   }
-  onProgress(books.length, books.length)
-  return { hits, truncated, skippedBooks }
 }

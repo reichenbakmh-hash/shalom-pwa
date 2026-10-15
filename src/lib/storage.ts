@@ -41,8 +41,16 @@ export const STORAGE_KEYS = {
   bibleReadingHistory: 'bible_reading_history',
   bibleNotes: 'bible_notes',
   bibleOffline: 'bible_offline',
+  bibleBookmarks: 'bible_bookmarks',
+  bibleSavedSearches: 'bible_saved_searches',
+  bibleRecentSearches: 'bible_recent_searches',
+  biblePrefs: 'bible_prefs',
 } as const
 
 export function purgeRemovedFeatureData() {
   storage.remove('ai_conversation')
+}
+
+export function uid(prefix: string): string {
+  return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`
 }

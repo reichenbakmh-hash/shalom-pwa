@@ -1,6 +1,6 @@
 import { Menu, X } from 'lucide-react'
 import CrossIcon from './icons/CrossIcon'
-import type { ViewId } from '../types'
+import type { BibleIntentInput, ViewId } from '../types'
 
 interface NavItem {
   id: ViewId
@@ -18,7 +18,7 @@ export const navItems: NavItem[] = [
 
 interface Props {
   current: ViewId
-  onNavigate: (id: ViewId) => void
+  onNavigate: (id: ViewId, intent?: BibleIntentInput) => void
   menuOpen: boolean
   onToggleMenu: () => void
 }
@@ -35,11 +35,11 @@ export default function Navbar({ current, onNavigate, menuOpen, onToggleMenu }: 
         <span>SHALOM</span>
       </button>
 
-      <nav className="liquid-glass hidden md:flex items-center gap-1 rounded-xl px-2 py-2" aria-label="Navigation principale">
+      <nav className="control hidden md:flex items-center gap-1 rounded-xl px-2 py-2" aria-label="Navigation principale">
         {navItems.map((item) => (
           <button
             key={item.id}
-            onClick={() => onNavigate(item.id)}
+            onClick={() => onNavigate(item.id, item.id === 'bible' ? { tab: 'lire' } : undefined)}
             className={`px-3 py-1.5 rounded-md text-sm transition-colors ${
               current === item.id ? 'bg-white/15 text-white' : 'text-white/70 hover:text-white'
             }`}
@@ -60,7 +60,7 @@ export default function Navbar({ current, onNavigate, menuOpen, onToggleMenu }: 
       </div>
 
       <button
-        className="md:hidden liquid-glass text-white p-2 rounded-lg"
+        className="md:hidden control text-white p-2 rounded-lg"
         aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
         onClick={onToggleMenu}
       >

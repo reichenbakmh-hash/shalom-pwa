@@ -45,17 +45,17 @@ export default function Journal() {
   }
 
   return (
-    <PageContainer title="Mon journal" subtitle="Vos pensées, prières et gratitudes, gardées au fil du temps.">
+    <PageContainer title="Mon journal" subtitle="Tes pensées, tes prières, tes mercis : tout ce que tu veux garder.">
       <button
         onClick={() => setShowForm((s) => !s)}
         className="bg-white text-black text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/90 transition-colors flex items-center gap-2 mb-6"
       >
         {showForm ? <X size={15} /> : <Plus size={15} />}
-        {showForm ? 'Annuler' : 'Nouvelle entrée'}
+        {showForm ? 'Annuler' : 'Nouvelle page'}
       </button>
 
       {showForm && (
-        <div className="liquid-glass-panel rounded-2xl p-5 mb-6 space-y-3 animate-fadeIn">
+        <div className="surface rounded-2xl p-5 mb-6 space-y-3 animate-fadeIn">
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -65,7 +65,7 @@ export default function Journal() {
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="Écrivez ici…"
+            placeholder="Écris ici…"
             rows={5}
             className="w-full bg-white/5 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 outline-none resize-none"
           />
@@ -81,7 +81,7 @@ export default function Journal() {
                 key={c}
                 onClick={() => setCategory(c)}
                 className={`px-3 py-1.5 rounded-full text-xs transition-colors ${
-                  category === c ? 'bg-white text-black' : 'liquid-glass text-white/60'
+                  category === c ? 'bg-white text-black' : 'control text-white/60'
                 }`}
               >
                 {c}
@@ -99,10 +99,10 @@ export default function Journal() {
 
       <div className="space-y-3">
         {entries.length === 0 && (
-          <p className="text-white/30 text-sm text-center py-10">Votre journal est vide. Écrivez votre première entrée.</p>
+          <p className="text-white/30 text-sm text-center py-10">Ton journal est vide pour l'instant. Écris ta première page.</p>
         )}
         {entries.map((e) => (
-          <div key={e.id} className="liquid-glass-panel rounded-2xl p-5">
+          <div key={e.id} className="surface rounded-2xl p-5">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h4 className="text-white text-sm font-medium">{e.title}</h4>
@@ -118,7 +118,7 @@ export default function Journal() {
             {e.tags.length > 0 && (
               <div className="flex flex-wrap gap-1.5 mt-3">
                 {e.tags.map((t) => (
-                  <span key={t} className="text-[10px] text-white/40 liquid-glass px-2 py-0.5 rounded-full">
+                  <span key={t} className="text-[10px] text-white/40 control px-2 py-0.5 rounded-full">
                     #{t}
                   </span>
                 ))}
